@@ -5,7 +5,7 @@ export const DirectoryListing = ({ node }: { node: Directory }) => (
     {Object.entries(node.children).map(([name, child]) => (
       <span
         key={name}
-        className={child.type === "directory" ? "text-[#89b4fa]" : ""}
+        className={child.type === "directory" ? "text-blue" : ""}
       >
         {name}
         {child.type === "directory" ? "/" : ""}

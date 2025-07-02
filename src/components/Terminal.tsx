@@ -7,16 +7,11 @@ import { commandProcessor } from "../utils/commandProcessor";
 
 const welcomeMessages = [
   {
-    command: "booting...",
-    output: <p>Welcome to my interactive portfolio...</p>,
-  },
-  { command: " ", output: <p>This is a simulated shell environment.</p> },
-  {
-    command: " ",
+    command: "Welcome to jboulevart.dev",
     output: (
       <p>
-        Try '<span className="text-[#89dceb]">ls</span>' to see available files,
-        and '<span className="text-[#89dceb]">help</span>' for all commands.
+        Type '<span className="text-sky">ls</span>' to see available files, and
+        '<span className="text-sky">help</span>' for all commands.
       </p>
     ),
   },
@@ -33,8 +28,8 @@ export const Terminal = () => {
 
   const PROMPT = (
     <>
-      <span className="text-[#a6e3a1]">{currentPath}</span>{" "}
-      <span className="text-[#cba6f7]">❯</span>
+      <span className="text-green">{currentPath}</span>{" "}
+      <span className="text-mauve">❯</span>
     </>
   );
 
@@ -59,6 +54,17 @@ export const Terminal = () => {
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [history, isProcessing, suggestions]);
+
+  useEffect(() => {
+    const handleExitSnake = () => {
+      setHistory((prev) => prev.slice(0, -1));
+      setIsProcessing(false);
+      setTimeout(() => inputRef.current?.focus(), 0);
+    };
+
+    window.addEventListener("exitSnake", handleExitSnake);
+    return () => window.removeEventListener("exitSnake", handleExitSnake);
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -164,7 +170,7 @@ export const Terminal = () => {
 
   return (
     <div
-      className="w-full h-full p-4 md:p-6 text-[#cdd6f4] text-sm md:text-base"
+      className="w-full h-full p-4 md:p-6 text-text text-sm"
       onClick={focusInput}
     >
       {history.map((entry) => (
@@ -189,7 +195,7 @@ export const Terminal = () => {
               value={inputValue}
               onChange={handleInputChange}
               onKeyDown={handleKeyDown}
-              className="bg-transparent border-none outline-none text-[#cdd6f4] w-full"
+              className="bg-transparent border-none outline-none text-text w-full"
               autoFocus
               disabled={isProcessing}
               spellCheck="false"
@@ -197,7 +203,7 @@ export const Terminal = () => {
             />
           </div>
           {suggestions.length > 0 && (
-            <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1 text-[#89b4fa]">
+            <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1 text-blue">
               {suggestions.map((s) => (
                 <span key={s}>{s}</span>
               ))}

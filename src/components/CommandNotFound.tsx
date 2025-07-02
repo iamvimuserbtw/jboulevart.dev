@@ -1,11 +1,11 @@
 export const CommandNotFound = ({ command }: { command: string }) => (
   <div>
     <p>
-      command not found: <span className="text-[#f38ba8]">{command}</span>
+      command not found: <span className="text-red">{command}</span>
     </p>
     <p>
-      Type '<span className="text-[#89dceb]">help</span>' to see a list of
-      available commands.
+      Type '<span className="text-sky">help</span>' to see a list of available
+      commands.
     </p>
   </div>
 );
