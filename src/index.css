@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+body {
+  font-family: "Fira Code", monospace;
+  /* Catppuccin Mocha Crust */
+  background-color: #11111b;
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(205, 214, 244, 0.05) 1px,
+    transparent 0
+  );
+  background-size: 20px 20px;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out forwards;
+}
+
+/* Custom scrollbar - Catppuccin style */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  /* Catppuccin Mocha Surface1 */
+  background-color: #45475a;
+  border-radius: 20px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  /* Catppuccin Mocha Surface2 */
+  background-color: #585b70;
+}
