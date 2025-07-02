@@ -4,6 +4,7 @@ import { getAutocompleteSuggestions } from "../utils/getAutocompleteSuggestion";
 import { getNode } from "../utils/getNode";
 import { resolvePath } from "../utils/resolvePath";
 import { commandProcessor } from "../utils/commandProcessor";
+import { isValidCommand } from "../utils/isValidCommand";
 
 const welcomeMessages = [
   {
@@ -178,7 +179,15 @@ export const Terminal = () => {
           {entry.command && (
             <div className="flex items-center gap-2">
               {PROMPT}
-              <span>{entry.command}</span>
+              <span
+                className={
+                  isValidCommand(entry.command.split(" ")[0])
+                    ? "text-blue font-bold"
+                    : ""
+                }
+              >
+                {entry.command}
+              </span>
             </div>
           )}
           <div className="mt-1">{entry.output}</div>

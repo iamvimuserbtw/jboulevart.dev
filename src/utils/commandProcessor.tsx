@@ -3,7 +3,6 @@ import { DirectoryListing } from "../components/DirectoryListing";
 import { ErrorOutput } from "../components/ErrorOutput";
 import { FileContent } from "../components/FileContent";
 import { HelpOutput } from "../components/HelpOutput";
-import { SnakeGame } from "../components/SnakeGame";
 import type { CommandProcessorResult } from "../types";
 import { getNode } from "./getNode";
 import { resolvePath } from "./resolvePath";
@@ -91,9 +90,7 @@ export const commandProcessor = (
         }
         break;
       }
-      case "snake":
-        resolve({ output: <SnakeGame /> });
-        break;
+      
       default:
         resolve({ output: <CommandNotFound command={command} /> });
         break;

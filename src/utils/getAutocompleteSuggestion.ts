@@ -5,7 +5,7 @@ export const getAutocompleteSuggestions = (
   inputValue: string,
   currentPath: string,
 ): string[] => {
-  const allCommands = ["ls", "cd", "cat", "pwd", "help", "clear", "snake"];
+  const allCommands = ["ls", "cd", "cat", "pwd", "help", "clear"];
   const parts = inputValue.trim().split(/\s+/);
 
   // If typing the command itself

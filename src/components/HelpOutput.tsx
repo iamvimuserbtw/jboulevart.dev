@@ -21,10 +21,6 @@ export const HelpOutput = () => (
         <span className="text-sky w-24 inline-block">help</span> You are here.
       </li>
       <li>
-        <span className="text-sky w-24 inline-block">snake</span> Launch a snake
-        game.
-      </li>
-      <li>
         <span className="text-sky w-24 inline-block">clear</span> Clears the
         terminal.
       </li>
