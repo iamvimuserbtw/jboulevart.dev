@@ -56,17 +56,6 @@ export const Terminal = () => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [history, isProcessing, suggestions]);
 
-  useEffect(() => {
-    const handleExitSnake = () => {
-      setHistory((prev) => prev.slice(0, -1));
-      setIsProcessing(false);
-      setTimeout(() => inputRef.current?.focus(), 0);
-    };
-
-    window.addEventListener("exitSnake", handleExitSnake);
-    return () => window.removeEventListener("exitSnake", handleExitSnake);
-  }, []);
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
     if (suggestions.length > 0) {

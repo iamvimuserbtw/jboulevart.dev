@@ -77,3 +77,29 @@ body {
   /* Catppuccin Mocha Surface2 */
   background-color: var(--color-surface2);
 }
+
+.md-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.md-content h1 {
+  color: var(--color-maroon);
+  @apply text-lg font-bold;
+}
+
+.md-content h2 {
+  color: var(--color-peach);
+  @apply font-bold;
+}
+
+.md-content strong {
+  color: var(--color-yellow);
+  @apply text-xs font-bold;
+}
+
+.md-content li,
+p {
+  @apply text-sm font-light;
+}
