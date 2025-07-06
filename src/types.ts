@@ -22,4 +22,5 @@ export type CommandHistoryEntry = {
   id: number;
   command: string;
   output: ReactNode;
+  path: string;
 };

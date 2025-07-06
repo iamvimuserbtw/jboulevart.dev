@@ -27,9 +27,9 @@ export const Terminal = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
 
-  const PROMPT = (
+  const createPrompt = (path: string) => (
     <>
-      <span className="text-green">{currentPath}</span>{" "}
+      <span className="text-green">{path}</span>{" "}
       <span className="text-mauve">❯</span>
     </>
   );
@@ -40,7 +40,7 @@ export const Terminal = () => {
       if (i < welcomeMessages.length) {
         setHistory((prev) => [
           ...prev,
-          { ...welcomeMessages[i], id: Date.now() + i },
+          { ...welcomeMessages[i], id: Date.now() + i, path: currentPath },
         ]);
         i++;
       } else {
@@ -50,7 +50,7 @@ export const Terminal = () => {
       }
     }, 300);
     return () => clearInterval(interval);
-  }, []);
+  }, [currentPath]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -114,7 +114,7 @@ export const Terminal = () => {
       if (commandToProcess.trim() === "") {
         setHistory((prev) => [
           ...prev,
-          { id: Date.now(), command: "", output: null },
+          { id: Date.now(), command: "", output: null, path: currentPath },
         ]);
         return;
       }
@@ -126,6 +126,7 @@ export const Terminal = () => {
         id: commandId,
         command: commandToProcess,
         output: "",
+        path: currentPath,
       };
 
       setHistory((prev) => [...prev, newHistoryEntry]);
@@ -167,7 +168,7 @@ export const Terminal = () => {
         <div key={entry.id} className="mb-2 animate-fade-in opacity-0">
           {entry.command && (
             <div className="flex items-center gap-2">
-              {PROMPT}
+              {createPrompt(entry.path)}
               <span
                 className={
                   isValidCommand(entry.command.split(" ")[0])
@@ -186,7 +187,7 @@ export const Terminal = () => {
       {!isProcessing && (
         <>
           <div className="flex items-center gap-2">
-            {PROMPT}
+            {createPrompt(currentPath)}
             <input
               ref={inputRef}
               type="text"
